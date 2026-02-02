@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will you be my Valentine? 💗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      position: relative;
+    }
+
+    /* Card container */
+    .card {
+      background: white;
+      padding: 45px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      z-index: 10;
+      animation: floatCard 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCard {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      color: #e6005c;
+      font-size: 30px;
+      margin-bottom: 35px;
+    }
+
+    /* Buttons */
+    button {
+      padding: 14px 32px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      margin: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px #ff6699;
+    }
+
+    .yes {
+      background: #ff3366;
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+
+    .yes:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px #ff6699;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .no {
+      background: #ccc;
+    }
+
+    .no:hover {
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Hearts and sparkles */
+    .heart, .sparkle {
+      position: absolute;
+      font-size: 24px;
+      opacity: 0.7;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Q – Will you be my Valentine? 💕</h1>
+    <button class="yes" onclick="goYes()">Yes 💖</button>
+    <button class="no" onclick="runNo(this)">No 🙈</button>
+  </div>
+
+  <script>
+    let noCount = 0;
+
+    function goYes() {
+      window.location.href = "yes_page.html";
+    }
+
+    function runNo(btn) {
+      noCount++;
+      btn.style.position = "absolute";
+      btn.style.left = Math.random() * 80 + "%";
+      btn.style.top = Math.random() * 80 + "%";
+
+      if (noCount >= 6) {
+        btn.style.display = "none";
+      }
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random()*20) + "px";
+      heart.style.color = `hsl(${Math.random()*360}, 100%, 70%)`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 400);
+
+    // Sparkles
+    setInterval(() => {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.textContent = "✨";
+      sparkle.style.left = Math.random() * 100 + "vw";
+      sparkle.style.top = Math.random() * 100 + "vh";
+      sparkle.style.fontSize = (10 + Math.random()*15) + "px";
+      sparkle.style.color = "white";
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 3000);
+    }, 600);
+
+  </script>
+
+</body>
+</html>
